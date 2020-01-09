@@ -131,27 +131,6 @@ class Display:
             self.log("Last request done:\n\tURL: {0}\n\tDATA: {1}\n\tOTHERS: {2}\n\n\t{3}\n{4}\n\n{5}\n"
                      .format(*self.last_request))
 
-    def intro(self):
-        output = self.SH_YELLOW + ("""
-       ____     ___         _     
-      / __/__ _/ _/__ _____(_)    
-     _\ \/ _ `/ _/ _ `/ __/ /     
-    /___/\_,_/_/ \_,_/_/ /_/      
-      / _ )___  ___  / /__ ___    
-     / _  / _ \/ _ \/  '_/(_-<    
-    /____/\___/\___/_/\_\/___/    
-""" if random() > 0.5 else """
- ██████╗     ██████╗ ██╗  ██╗   ██╗██████╗ 
-██╔═══██╗    ██╔══██╗██║  ╚██╗ ██╔╝╚════██╗
-██║   ██║    ██████╔╝██║   ╚████╔╝   ▄███╔╝
-██║   ██║    ██╔══██╗██║    ╚██╔╝    ▀▀══╝ 
-╚██████╔╝    ██║  ██║███████╗██║     ██╗   
- ╚═════╝     ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝                                           
-""") + self.SH_DEFAULT
-        output += "\n" + "~" * (self.columns // 2)
-
-        self.out(output)
-
     def parse_description(self, desc):
         if not desc:
             return "n/d"
@@ -309,7 +288,6 @@ class SafariBooks:
     def __init__(self, args):
         self.args = args
         self.display = Display("info_%s.log" % escape(args.bookid))
-        self.display.intro()
 
         self.session = requests.Session()
         self.session.headers.update(self.HEADERS)
